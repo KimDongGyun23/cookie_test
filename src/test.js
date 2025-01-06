@@ -50,19 +50,25 @@ export class HttpClient {
     if (axios.isAxiosError(error)) {
       if (response?.status === 403) {
         try {
-          console.log(response, originalRequest);
           const res = await reissue();
           console.log(res);
 
-          if (res.status === 200)
-            return await this.client.request(originalRequest);
+          if (res.status === 200) {
+            const retry = await this.client.request(originalRequest);
+            return retry;
+          }
         } catch {
           console.error("재발급 실패");
         }
       }
     }
 
-    return Promise.reject(error);
+    const errorMsg =
+      `Error from : ${error.config.url}\n` +
+      `status : ${error.response.status} \n` +
+      `message: ${error.response.statusText}`;
+
+    return Promise.reject(errorMsg);
   }
 }
 

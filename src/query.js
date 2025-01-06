@@ -9,10 +9,7 @@ export const reissue = async () =>
     .post(`${baseURL}/api/reissue`, null, {
       withCredentials: true,
     })
-    .then((res) => {
-      console.log(res);
-      api.setAccessToken(res.headers.get("Authorization"));
-    });
+    .then((res) => api.setAccessToken(res.headers.get("Authorization")));
 
 export const useFetchData = () =>
   useQuery({

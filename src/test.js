@@ -50,10 +50,7 @@ export class HttpClient {
     if (axios.isAxiosError(error)) {
       if (response?.status === 403) {
         try {
-          const reIssueResponse = reissue;
-          const newAccessToken = reIssueResponse.headers["authorization"];
-
-          this.setAccessToken(newAccessToken);
+          reissue();
           const response = await this.client.request(originalRequest);
 
           return response;

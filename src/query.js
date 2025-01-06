@@ -4,10 +4,14 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 
 const baseURL = import.meta.env.VITE_PUBLIC_SERVER;
 
-export const reissue = () =>
-  axios.post(`${baseURL}/api/reissue`, null, {
-    withCredentials: true,
-  });
+export const reissue = async () =>
+  await axios.post(
+    `${baseURL}/api/reissue`,
+    null,
+    {
+      withCredentials: true,
+    }.then((res) => api.setAccessToken(res.headers.get("Authorization")))
+  );
 
 export const useFetchData = () =>
   useQuery({
@@ -43,7 +47,7 @@ export const useReIssue = () =>
         .post(`${baseURL}/api/reissue`, null, {
           withCredentials: true,
         })
-        .then((res) => console.log(res)),
+        .then((res) => api.setAccessToken(res.headers.get("Authorization"))),
   });
 
 export const useLogin = () => {

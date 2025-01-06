@@ -54,11 +54,11 @@ export class HttpClient {
         try {
           reissue;
           const response = await this.client.request(originalRequest);
-          test++;
+          console.log(test++);
           return response;
         } catch {
           console.error("재발급 실패");
-          test++;
+          console.log(test++);
         }
       }
     }

@@ -1,5 +1,4 @@
 import axios from "axios";
-import { reissue } from "./query";
 
 const BASE_URL = import.meta.env.VITE_PUBLIC_SERVER;
 
@@ -49,19 +48,21 @@ export class HttpClient {
 
     let test = 0;
 
-    if (axios.isAxiosError(error)) {
-      if (response?.status === 403 && test < 4) {
-        try {
-          reissue;
-          const response = await this.client.request(originalRequest);
-          console.log(test++);
-          return response;
-        } catch {
-          console.error("재발급 실패");
-          console.log(test++);
-        }
-      }
-    }
+    console.log(response, originalRequest);
+
+    // if (axios.isAxiosError(error)) {
+    //   if (response?.status === 403 && test < 4) {
+    //     try {
+    //       reissue;
+    //       const response = await this.client.request(originalRequest);
+    //       console.log(test++);
+    //       return response;
+    //     } catch {
+    //       console.error("재발급 실패");
+    //       console.log(test++);
+    //     }
+    //   }
+    // }
 
     return Promise.reject(error);
   }

@@ -47,11 +47,14 @@ export class HttpClient {
     const response = error.response;
     const originalRequest = error.config;
 
+    let test = 0;
+
     if (axios.isAxiosError(error)) {
-      if (response?.status === 403) {
+      if (response?.status === 403 || test < 4) {
         try {
           reissue;
           const response = await this.client.request(originalRequest);
+          test++;
           return response;
         } catch {
           console.error("재발급 실패");

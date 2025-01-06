@@ -40,11 +40,13 @@ export const useLogin = () => {
 
   return useMutation({
     mutationFn: async () =>
-      await axios.post(`${baseURL}/api/login`, formData, {
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-      }),
-    onSuccess: (res) => api.setAccessToken(res.headers.authorization),
+      await axios
+        .post(`${baseURL}/api/login`, formData, {
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          withCredentials: true,
+        })
+        .then((res) => api.setAccessToken(res.headers.get("Authorization"))),
   });
 };

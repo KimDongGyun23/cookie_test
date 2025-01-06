@@ -50,7 +50,7 @@ export class HttpClient {
     if (axios.isAxiosError(error)) {
       if (response?.status === 403) {
         try {
-          reissue();
+          reissue;
           const response = await this.client.request(originalRequest);
 
           return response;

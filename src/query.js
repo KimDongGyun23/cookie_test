@@ -10,7 +10,10 @@ export const reissue = async () =>
     null,
     {
       withCredentials: true,
-    }.then((res) => api.setAccessToken(res.headers.get("Authorization")))
+    }.then((res) => {
+      console.log(res.headers);
+      api.setAccessToken(res.headers.get("Authorization"));
+    })
   );
 
 export const useFetchData = () =>

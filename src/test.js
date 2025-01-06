@@ -52,7 +52,6 @@ export class HttpClient {
         try {
           reissue;
           const response = await this.client.request(originalRequest);
-
           return response;
         } catch {
           console.error("재발급 실패");

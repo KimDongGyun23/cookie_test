@@ -4,7 +4,10 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 
 const baseURL = import.meta.env.VITE_PUBLIC_SERVER;
 
-export const reissue = () => axios.post(`${baseURL}/api/reissue`);
+export const reissue = () =>
+  axios.post(`${baseURL}/api/reissue`, null, {
+    withCredentials: true,
+  });
 
 export const useFetchData = () =>
   useQuery({

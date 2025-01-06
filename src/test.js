@@ -47,13 +47,10 @@ export class HttpClient {
     const response = error.response;
     const originalRequest = error.config;
 
-    let test = 0;
-
-    console.log(response, originalRequest);
-
     if (axios.isAxiosError(error)) {
-      if (response?.status === 403 && test < 4) {
+      if (response?.status === 403) {
         try {
+          console.log(response, originalRequest);
           const res = await reissue();
           console.log(res);
 
@@ -61,7 +58,6 @@ export class HttpClient {
           return response;
         } catch {
           console.error("재발급 실패");
-          console.log(test++);
         }
       }
     }

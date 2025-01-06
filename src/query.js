@@ -5,16 +5,14 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 const baseURL = import.meta.env.VITE_PUBLIC_SERVER;
 
 export const reissue = async () =>
-  await axios.post(
-    `${baseURL}/api/reissue`,
-    null,
-    {
+  await axios
+    .post(`${baseURL}/api/reissue`, null, {
       withCredentials: true,
-    }.then((res) => {
-      console.log(res.headers);
-      api.setAccessToken(res.headers.get("Authorization"));
     })
-  );
+    .then((res) => {
+      console.log(res);
+      api.setAccessToken(res.headers.get("Authorization"));
+    });
 
 export const useFetchData = () =>
   useQuery({

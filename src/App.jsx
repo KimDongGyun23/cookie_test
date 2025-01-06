@@ -23,12 +23,6 @@ function App() {
   const { mutate: reIssue, error: reIssueError } = useReIssue();
   const { data, refetch } = useFetchData();
 
-  const cookies = Object.fromEntries(
-    document.cookie.split(";").map((cookie) => cookie.trim().split("="))
-  );
-
-  console.log(cookies);
-
   return (
     <>
       <Section

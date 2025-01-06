@@ -1,5 +1,6 @@
 import { useFetchData, useLogin, useSignUp, useValidationId } from "./query";
 
+// eslint-disable-next-line react/prop-types
 const Section = ({ onClick, label, error }) => {
   return (
     <section style={{ display: "flex" }}>

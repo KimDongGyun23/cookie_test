@@ -54,8 +54,8 @@ export class HttpClient {
           const res = await reissue();
           console.log(res);
 
-          // const response = await this.client.request(originalRequest);
-          return response;
+          if (res.status === 200)
+            return await this.client.request(originalRequest);
         } catch {
           console.error("재발급 실패");
         }

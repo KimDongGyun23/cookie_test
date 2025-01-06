@@ -33,6 +33,14 @@ export const useValidationId = () =>
       }),
   });
 
+export const useReIssue = () =>
+  useMutation({
+    mutationFn: async () =>
+      await axios
+        .post(`${baseURL}/api/reissue`)
+        .then((res) => console.log(res)),
+  });
+
 export const useLogin = () => {
   const formData = new FormData();
   formData.append("username", "ididid");

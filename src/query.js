@@ -40,7 +40,7 @@ export const useReIssue = () =>
   useMutation({
     mutationFn: async () =>
       await axios
-        .post(`${baseURL}/api/reissue`, {
+        .post(`${baseURL}/api/reissue`, null, {
           withCredentials: true,
         })
         .then((res) => console.log(res)),
